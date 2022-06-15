@@ -1,0 +1,34 @@
+overblog_graphql:
+  definitions:
+    schema:
+      query: Query
+      mutation: Mutation
+    mappings:
+      types:
+        - type: yaml
+          dir: "%kernel.project_dir%/config/graphql/types/"
+          suffix: ~
+        - type: attribute
+          dir: "%kernel.project_dir%/src/{Repository,Entity,GraphQL}"
+          suffix: ~
+        - type: attribute
+          dir: "%kernel.project_dir%/vendor/sparklink/graphql-tools-bundle/src"
+          suffix: ~
+    builders:
+      fields:
+        - alias: CrudEntityId
+          class: "Sparklink\\GraphQLToolsBundle\\GraphQL\\Builder\\CrudEntityIdBuilder"
+        - alias: CrudQuery
+          class: "Sparklink\\GraphQLToolsBundle\\GraphQL\\Builder\\CrudQueryBuilder"
+        - alias: CrudMutation
+          class: "Sparklink\\GraphQLToolsBundle\\GraphQL\\Builder\\CrudMutationBuilder"
+  doctrine:
+    types_mapping:
+      uuid: String
+      date: Date
+      time: Time
+      datetime: DateTime
+      datetimetz: DateTimeTz
+      coordinates: Coordinates
+      jsonb: Json
+      text[]: "[String]"

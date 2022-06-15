@@ -1,0 +1,9 @@
+twig:
+    default_path: "%kernel.project_dir%/templates"
+    globals:
+        _app_name: GFO
+        _app_version: "%env(resolve:APP_VERSION)%"
+
+when@test:
+    twig:
+        strict_variables: true

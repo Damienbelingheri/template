@@ -1,0 +1,27 @@
+
+{% extends '@Kerberos/base.html.twig' %}
+
+{% trans_default_domain 'KerberosBundle' %}
+
+{% block meta_title parent() ~ ' Connexion' %}
+{% block body_class %}login{% endblock %}
+
+{% block body %}
+    <div class="login-box">
+        <img class="logo" src="/logo-white.svg" style="content: unset"/>
+
+        <h1>
+            {{ _app_name }} 
+            <span>
+                {{ _app_version }}
+                {% if app.environment != 'prod' %}
+                    <em>demo</em>
+                {% endif %}
+            </span>
+        </h1>
+
+        <form id="login-form" action="{{ path("kerberos_login") }}" method="post">
+            {% block box %}{% endblock %}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+type Query {
+  """Find a Test by id"""
+  Test(id: TestId!): Test
+
+  """Find all objects of type Test """
+  TestList(limit: Int, offset: Int, orderBy: [OrderListInput!]): TestListPayload
+
+  """Find a User by id"""
+  User(id: UserId!): User
+
+  """Find all objects of type User """
+  UserList(limit: Int, offset: Int, orderBy: [OrderListInput!]): UserListPayload
+}
+
+scalar TestId
+
+type Test {
+  id: Int!
+  name: String!
+}
+
+input OrderListInput {
+  field: String!
+  order: OrderListOrder = ASC
+}
+
+enum OrderListOrder {
+  ASC
+  DESC
+}
+
+type TestListPayload {
+  items: [Test!]!
+}
+
+scalar UserId
+
+type User {
+  id: Int!
+  firstname: String
+  lastname: String
+  username: String!
+  email: String!
+  thumbnail: Boolean
+}
+
+type UserListPayload {
+  items: [User!]!
+}
+
+type Mutation {
+  """Create a Test"""
+  TestCreate(input: TestInput): Test
+
+  """Update or create an object of type Test"""
+  TestUpdate(item: TestId!, input: TestInput!): Test
+
+  """Remove a object of type Test"""
+  TestDelete(item: TestId!): Boolean
+
+  """Create a User"""
+  UserCreate(input: UserInput): User
+
+  """Update or create an object of type User"""
+  UserUpdate(item: UserId!, input: UserInput!): User
+
+  """Remove a object of type User"""
+  UserDelete(item: UserId!): Boolean
+}
+
+input TestInput {
+  name: String!
+}
+
+input UserInput {
+  name: String!
+}

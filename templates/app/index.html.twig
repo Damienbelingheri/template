@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ vite_entry_link_tags("app") }}
+{% endblock %}
+
+{% block body %}
+
+
+	{% set config =  {
+     username: app.user ? app.user.userIdentifier : 'Anonymous',
+     displayName: app.user ? app.user.displayName|default(app.user.userIdentifier) : 'Anonymous',
+     logout: path('kerberos_logout'),
+     switchUser: path('app')~'?_switch_user=',
+     isAdmin: is_granted('ROLE_ADMIN'),
+     impersonedExitPath: impersonation_exit_path('/admin'),
+}%}
+
+
+
+	<div id="app" config="{{ config | json_encode }}"></div>
+{% endblock %}
+
+
+{% block javascripts %}
+	{{ vite_entry_script_tags("app", { dependency: 'react' }) }}
+{% endblock %}

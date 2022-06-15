@@ -1,0 +1,13 @@
+fragment _Test on Test {
+  id
+  name
+}
+
+fragment _User on User {
+  id
+  email
+  firstname
+  lastname
+  thumbnail
+  username
+}

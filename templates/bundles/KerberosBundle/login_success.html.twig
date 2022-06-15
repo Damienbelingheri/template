@@ -1,0 +1,25 @@
+{% extends '@Kerberos/box.html.twig' %}
+
+{% set user = app.user %}
+
+{% trans_default_domain 'KerberosBundle' %}
+
+{% block box %}
+    <h3>{{ app.user.displayName is defined ? app.user.displayName : "Demo" }}</h3>
+    <p>Vous êtes authentifé</p>
+
+    {% if app.user.thumbnail is defined %}
+        <div class="avatar">
+            <img src="/thumbs/{{ app.user.username|upper }}.jpg" />
+        </div>
+    {% endif %}
+
+    <div class="actions">
+        <a href="{{ path('app') }}" class="button">Enter application</a>
+    </div>
+
+    <div class="links">
+        <a href="{{ logout_path('main') }}">< Switch user</a>        
+    </div>
+{% endblock %}
+

@@ -1,0 +1,59 @@
+query Test($id: TestId!) {
+  res: Test(id: $id) {
+    ..._Test
+  }
+}
+
+query TestList($limit: Int, $offset: Int, $orderBy: [OrderListInput!]) {
+  res: TestList(limit: $limit, offset: $offset, orderBy: $orderBy) {
+    items {
+      ..._Test
+    }
+  }
+}
+
+query User($id: UserId!) {
+  res: User(id: $id) {
+    ..._User
+  }
+}
+
+query UserList($limit: Int, $offset: Int, $orderBy: [OrderListInput!]) {
+  res: UserList(limit: $limit, offset: $offset, orderBy: $orderBy) {
+    items {
+      ..._User
+    }
+  }
+}
+
+mutation TestCreate($input: TestInput) {
+  res: TestCreate(input: $input) {
+    ..._Test
+  }
+}
+
+mutation TestDelete($item: TestId!) {
+  res: TestDelete(item: $item)
+}
+
+mutation TestUpdate($input: TestInput!, $item: TestId!) {
+  res: TestUpdate(input: $input, item: $item) {
+    ..._Test
+  }
+}
+
+mutation UserCreate($input: UserInput) {
+  res: UserCreate(input: $input) {
+    ..._User
+  }
+}
+
+mutation UserDelete($item: UserId!) {
+  res: UserDelete(item: $item)
+}
+
+mutation UserUpdate($input: UserInput!, $item: UserId!) {
+  res: UserUpdate(input: $input, item: $item) {
+    ..._User
+  }
+}

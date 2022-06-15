@@ -1,0 +1,27 @@
+kerberos:
+    keytab:
+        path: "%env(KEYTAB_PATH)%"
+
+    form_login:
+        enabled: true
+        use_encoder: true
+
+    transformer:
+        service: App\Users\LdapToUserTransformer
+
+    # TODO: Change GAP to  GFO
+    ldap:
+        enabled: "%env(bool:LDAP_ENABLED)%"
+        reader_user_dn: "%env(LDAP_READER_USER)%"
+        reader_user_password: "%env(LDAP_READER_PASSWORD)%"
+        host: "%env(LDAP_SERVER_HOST)%"
+        port: "%env(int:LDAP_SERVER_PORT)%"
+        groups:
+            gap_admins: CN=Gap Admins,OU=GAP,OU=SI,DC=ad,DC=arianespace,DC=fr
+            gap_readers: CN=Gap Readers,OU=GAP,OU=SI,DC=ad,DC=arianespace,DC=fr
+            gap_users: CN=Gap Users,OU=GAP,OU=SI,DC=ad,DC=arianespace,DC=fr
+    groups:
+        roles_registry:
+            gap_users: ROLE_USER
+            gap_readers: ROLE_READER
+            gap_admins: ROLE_ADMIN
